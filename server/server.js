@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors');
 const dotenv = require('dotenv')
 const connectDB = require('./config/config')
 
@@ -15,8 +16,11 @@ const app=express()
 // middlewares
 app.use(express.json())
 app.use(morgan('dev'))
+// Configure CORS
+app.use(cors());
 
 // Route
+app.use('/api/pizzas',require("./routes/pizzaRoute"))
 app.get("/",(req,res)=>{
     res.send('<h1>Hello from Node server nodemon</h1>')
 })
